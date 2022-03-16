@@ -1,0 +1,358 @@
+﻿@model CMCPS.Default.Discharge.DischargeReportData
+
+@if ((bool?)ViewData["Printing"] == true)
+{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+@section Head
+{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+}
+<section class="invoice">
+
+    <div class="col-xs-6">
+        <div style="margin-right:10px">
+            <h4 style="font-size:14px">হাসপাতালের ত্যাগকালে উপদেশ ও ব্যবস্থাপত্রঃ</h4>
+            <div style="min-height:320px; text-align:justify;">
+                <h4 style="font-size:15px"><strong>Treatment Continue: </strong><p style="line-height:25px">@Model.Discharge.TreatmentContinues</p></h4>
+            </div>
+            <div style="min-height:295px">
+                <h4 style="font-size:15px">
+                    <strong>Advice: </strong>
+                    @{
+                        if (Model.Discharge.Advice != null)
+                        {
+                            string[] advice = Model.Discharge.Advice.Split(',');
+                            foreach (string item in advice)
+                            {
+                                <p>@item</p>
+                            }
+                        }
+
+
+                    }
+
+                </h4>
+            </div>
+            <h4 style="font-size:14px">বিঃ দ্রঃ- পুনরায় ভর্তি বা উপদেশের জন্য এই ছাড়পত্র অবশ্যই সঙ্গে আনিবেন।</h4>
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+        <div style="margin-left:10px; min-height:700px">
+            <div>
+                <h4 style="font-size:14px">বাংলাদেশ ফরম নং ৮১৭</h4>
+                <h3 class="text-center"><strong>চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল</strong></h3>
+                <h3 class="text-center"><strong>রোগীর ছাড়পত্র</strong></h3>
+                <div style="margin-top:-115px; margin-left:400px;  position:relative">
+                    <h4 style="font-size:12px"><strong>Unit:</strong>@Model.Admission.UnitNumber</h4>
+                    <h4 style="font-size:12px"><strong>Wt:</strong>@Model.Admission.Weight</h4>
+                    <h4 style="font-size:12px"><strong>H/R/N:</strong>@Model.Admission.HospitalRegNumber</h4>
+                    <h4 style="font-size:12px"><strong>U/R/N:</strong>@Model.Admission.UnitRegNumber</h4>
+                    <h4 style="font-size:12px"><strong>PIN:</strong>@Model.Admission.PinNumber</h4>
+                </div>
+                <br /><br />
+            </div>
+
+            <h4 style="font-size:15px">
+                প্রত্যায়ন করা যাইতেছে যে, জনাব <span style="margin-left:50px;">@Model.Admission.Name</span>
+                <p style="margin-left:175px; margin-top:-13px">...........................................................................................................</p>
+            </h4>
+            <h4 style="font-size:15px">
+                পিতা <span style="margin-left:50px;">@Model.Admission.FatherName</span>
+                <p style="margin-left:30px; margin-top:-13px">......................................................................................................................................................................................................................</p>
+            </h4>
+            <h4 style="font-size:15px">
+                ঠিকানা <span style="margin-left:40px;">@Model.Admission.House, @Model.Admission.PostOffice, @Model.Admission.UpazilaName, @Model.Admission.DistrictName</span>
+                <p style="margin-left:42px; margin-top:-13px">......................................................................................................................................................................................................................</p>
+                <p>......................................................................................................................................................................................................................</p>
+            </h4>
+
+            <h4 style="line-height:40px;font-size:15px">অত্র হাসপাতালের শিশু সার্জারি বিভাগে @Model.Admission.Ward ওয়ার্ডে @Model.Admission.BedNumber শয্যা / কেবিনে @Convert.ToDateTime(Model.Admission.Date).ToString("dd-MM-yyyy") হইতে @Convert.ToDateTime(Model.Discharge.Date).ToString("dd-MM-yyyy") তারিখ পর্যন্ত চিকিৎসাধীন ছিলেন ।</h4>
+            <br />
+
+            <h4 style="line-height:25px;font-size:15px">তিনি @Model.Admission.FinalDiagnosis ভুগিতেছিলেন । </h4>
+            <br />
+            <br />
+            <div style="float:left">
+                <h4 style="font-size:15px">তারিখ: @Convert.ToDateTime(DateTime.Now).ToString("dd-MM-yyyy")</h4>
+            </div>
+            <div style="float:right">
+                @{
+                    string name = "";
+                    string designation = "";
+                    if (Model.Admission.Doctor != null)
+                    {
+                        string[] doctor = Model.Admission.Doctor.Split(',');
+                        name = doctor[0];
+                        designation = doctor[1];
+                    }
+
+                }
+                <h4 style="font-size:15px">স্বাক্ষর @name</h4>
+                <h4 style="font-size:15px">পদবী @designation</h4>
+                <h4 style="font-size:15px">রেজিঃ নম্বর ..................</h4>
+            </div>
+
+            <div style="margin-top:180px">
+                <h4 style="font-size:14px">বাঃ নিঃ মুঃ-১২/২০১৮-১৯, ৩০ লক্ষ কপি, মুদ্রাণাদেশ নং-১০/২০১৮-১৯, তাং-১২/৬/২০১৮ ইং।</h4>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div style="margin-right:10px">
+            <h4 style="font-size:15px">পরীক্ষা ও পর্যবেক্ষণের ফলাফলঃ-</h4>
+            <div style="min-height:500px">
+                <h4 style="font-size:15px"><strong>Investigation:</strong></h4>
+                <div class="row">
+                    @if (Model.Investigation.Cbc != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">CBC: @Model.Investigation.Cbc</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Creatinine != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Creatinine: @Model.Investigation.Creatinine (mg/dl)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Urea != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Urea: @Model.Investigation.Urea (mg/dl)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Sugar != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Sugar: @Model.Investigation.Sugar (mg/dl)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Albumin != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Albumin: @Model.Investigation.Albumin (mg/dl)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Calcium != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Calcium: @Model.Investigation.Calcium (mmol/L)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.BloodCulture != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Blood Culture: @Model.Investigation.BloodCulture</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Crp != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">CRP: @Model.Investigation.Crp (mg/dl)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Bt != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">BT: @Model.Investigation.Bt (min)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Ct != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">CT: @Model.Investigation.Ct (min)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.ProthrombinTime != "")
+                    {
+                        <div class="col-xs-8">
+                            <h4 style="font-size:15px">Prothrombin Time: @Model.Investigation.ProthrombinTime (min)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Aptt != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">APTT: @Model.Investigation.Aptt (min)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.OptionToAddHematology != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Option To Add: @Model.Investigation.OptionToAddHematology</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Na != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Na: @Model.Investigation.Na (mmol/L)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.K != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">K: @Model.Investigation.K (mmol/L)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Cl != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">Cl: @Model.Investigation.Cl (mmol/L)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.HCO3 != "")
+                    {
+                        <div class="col-xs-4">
+                            <h4 style="font-size:15px">HCO3 : @Model.Investigation.HCO3  (mmol/L)</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Cxr != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">CXR: @Model.Investigation.Cxr</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Axr != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">AXR: @Model.Investigation.Axr</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.XrayKub != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">Xray Kub: @Model.Investigation.XrayKub</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.BaEnema != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">Ba Enema: @Model.Investigation.BaEnema</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.BaMealFollowThrough != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">Ba Meal Follow Through: @Model.Investigation.BaMealFollowThrough</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Mcu != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">MCU: @Model.Investigation.Mcu</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Rgu != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">RGU: @Model.Investigation.Rgu</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Ivu != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">IVU: @Model.Investigation.Ivu</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.CtScan != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">CT Scan: @Model.Investigation.CtScan</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Mri != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">MRI: @Model.Investigation.Mri</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.OptionToAddImaging != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">Option To Add: @Model.Investigation.OptionToAddImaging</h4>
+                        </div>
+                    }
+                    @if (Model.Investigation.Usg != "")
+                    {
+                        <div class="col-xs-6">
+                            <h4 style="font-size:15px">USG: @Model.Investigation.Usg</h4>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <h4 style="font-size:15px"><strong>Summary:</strong></h4>
+                    <h4 style="text-align:justify;font-size:15px; line-height:25px">@Model.Admission.Summary</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div style="margin-left:10px">
+            <h4 style="font-size:15px">প্রদত্ত চিকিৎসা ও শল্য চিকিৎসার বিবরণঃ-</h4>
+            @if (Model.Operation != null)
+            {
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px"><strong>Name of Operation:</strong>@Model.Operation.OperationName</h4>
+
+                </div>
+                <div class="col-xs-6">
+                    <h4 style="font-size:14px"><strong>Date:</strong>@Convert.ToDateTime(Model.Operation.Date).ToString("dd-MM-yyyy")</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4 style="font-size:14px"><strong>Anesthesia:</strong>@Model.Operation.Anesthesia</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px"><strong>Position:</strong>@Model.Operation.Position</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px"><strong>Indication:</strong>@Model.Operation.Indication</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px"><strong>Incision:</strong>@Model.Operation.Incision</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px; text-align:justify; line-height:20px"><strong>Findings:</strong>@Model.Operation.Findings</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px;text-align:justify; line-height:20px"><strong>Procedures:</strong>@Model.Operation.Procedures</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px;text-align:justify; line-height:20px"><strong>Histopathology:</strong>@Model.Operation.Histopathology</h4>
+                </div>
+                <div class="col-xs-12"> <h4 style="font-size:14px;text-align:justify; line-height:25px"><strong>SpecialNote:</strong>@Model.Operation.SpecialNote</h4></div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px;text-align:justify; line-height:20px"><strong>Instructions:</strong>@Model.Operation.Instructions</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px;text-align:justify; line-height:20px"><strong>FurtherPlan:</strong>@Model.Operation.FurtherPlan</h4>
+                </div>
+
+
+            }
+            else
+            {
+                <div class="col-xs-12">
+                    <h4 style="font-size:14px">
+                        <strong>Treatment:</strong>
+                        @{
+                            if (Model.Treatment.Treatment != null)
+                            {
+                                string[] treatment = Model.Treatment.Treatment.Split(',');
+                                foreach (string item in treatment)
+                                {
+                                    <p>@item</p>
+                                }
+                            }
+
+
+                        }
+                    </h4>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</section>

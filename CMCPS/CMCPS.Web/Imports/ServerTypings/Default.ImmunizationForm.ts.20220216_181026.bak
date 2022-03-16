@@ -1,0 +1,20 @@
+﻿
+namespace CMC.Default {
+    export class ImmunizationForm extends Serenity.PrefixedContext {
+        static formKey = 'Default.Immunization';
+    }
+
+    export interface ImmunizationForm {
+        ImmunizationName: Serenity.StringEditor;
+    }
+
+    [,
+        ['ImmunizationName', () => Serenity.StringEditor]
+    ].forEach(x => Object.defineProperty(ImmunizationForm.prototype, <string>x[0], {
+        get: function () {
+            return this.w(x[0], (x[1] as any)());
+        },
+        enumerable: true,
+        configurable: true
+    }));
+}

@@ -1,0 +1,116 @@
+﻿
+namespace CMCPS.Default {
+    export interface PathologyWithInvestigationRow {
+        Id?: number;
+        InvestigationId?: number;
+        PathologyId?: number;
+        Value?: string;
+        InvestigationAdmissionId?: number;
+        InvestigationEntryDate?: string;
+        InvestigationCbc?: string;
+        InvestigationCreatinine?: string;
+        InvestigationUrea?: string;
+        InvestigationSugar?: string;
+        InvestigationAlbumin?: string;
+        InvestigationCalcium?: string;
+        InvestigationElectrolytes?: string;
+        InvestigationBloodCulture?: string;
+        InvestigationCrp?: string;
+        InvestigationBt?: string;
+        InvestigationCt?: string;
+        InvestigationProthrombinTime?: string;
+        InvestigationAptt?: string;
+        InvestigationOptionToAddHematology?: string;
+        InvestigationCxr?: string;
+        InvestigationAxr?: string;
+        InvestigationXrayKub?: string;
+        InvestigationUsg?: string;
+        InvestigationBaEnema?: string;
+        InvestigationBaMealFollowThrough?: string;
+        InvestigationMcu?: string;
+        InvestigationRgu?: string;
+        InvestigationIvu?: string;
+        InvestigationCtScan?: string;
+        InvestigationMri?: string;
+        InvestigationOptionToAddImaging?: string;
+        PathologyPathologyName?: string;
+    }
+
+    export namespace PathologyWithInvestigationRow {
+        export const idProperty = 'Id';
+        export const nameProperty = 'Value';
+        export const localTextPrefix = 'Default.PathologyWithInvestigation';
+
+        export namespace Fields {
+            export declare const Id;
+            export declare const InvestigationId;
+            export declare const PathologyId;
+            export declare const Value;
+            export declare const InvestigationAdmissionId;
+            export declare const InvestigationEntryDate;
+            export declare const InvestigationCbc;
+            export declare const InvestigationCreatinine;
+            export declare const InvestigationUrea;
+            export declare const InvestigationSugar;
+            export declare const InvestigationAlbumin;
+            export declare const InvestigationCalcium;
+            export declare const InvestigationElectrolytes;
+            export declare const InvestigationBloodCulture;
+            export declare const InvestigationCrp;
+            export declare const InvestigationBt;
+            export declare const InvestigationCt;
+            export declare const InvestigationProthrombinTime;
+            export declare const InvestigationAptt;
+            export declare const InvestigationOptionToAddHematology;
+            export declare const InvestigationCxr;
+            export declare const InvestigationAxr;
+            export declare const InvestigationXrayKub;
+            export declare const InvestigationUsg;
+            export declare const InvestigationBaEnema;
+            export declare const InvestigationBaMealFollowThrough;
+            export declare const InvestigationMcu;
+            export declare const InvestigationRgu;
+            export declare const InvestigationIvu;
+            export declare const InvestigationCtScan;
+            export declare const InvestigationMri;
+            export declare const InvestigationOptionToAddImaging;
+            export declare const PathologyPathologyName;
+        }
+
+        [
+            'Id',
+            'InvestigationId',
+            'PathologyId',
+            'Value',
+            'InvestigationAdmissionId',
+            'InvestigationEntryDate',
+            'InvestigationCbc',
+            'InvestigationCreatinine',
+            'InvestigationUrea',
+            'InvestigationSugar',
+            'InvestigationAlbumin',
+            'InvestigationCalcium',
+            'InvestigationElectrolytes',
+            'InvestigationBloodCulture',
+            'InvestigationCrp',
+            'InvestigationBt',
+            'InvestigationCt',
+            'InvestigationProthrombinTime',
+            'InvestigationAptt',
+            'InvestigationOptionToAddHematology',
+            'InvestigationCxr',
+            'InvestigationAxr',
+            'InvestigationXrayKub',
+            'InvestigationUsg',
+            'InvestigationBaEnema',
+            'InvestigationBaMealFollowThrough',
+            'InvestigationMcu',
+            'InvestigationRgu',
+            'InvestigationIvu',
+            'InvestigationCtScan',
+            'InvestigationMri',
+            'InvestigationOptionToAddImaging',
+            'PathologyPathologyName'
+        ].forEach(x => (<any>Fields)[x] = x);
+    }
+}

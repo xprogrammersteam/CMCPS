@@ -1,0 +1,222 @@
+﻿@model CMCPS.Default.Investigation.InvestigationReportData
+
+@if ((bool?)ViewData["Printing"] == true)
+{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+@section Head
+{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+}
+<section class="invoice">
+
+    <div class="row">
+        
+        <div class="col-xs-12">
+           
+            <h3 style="text-align: center; text-decoration: underline">PATIENT’S INVESTIGATION RECORD</h3>
+        </div>
+      
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Name:</strong>@Model.Admission.Name</h4>
+        </div>
+        <div class="col-xs-6 invoice-col">
+            @{
+                string time = Model.Admission.Time.ToString();
+            }
+            <h4><strong>Date & Time of Admission:</strong> @Convert.ToDateTime(Model.Admission.Date).ToString("dd/MM/yyyy") & @Convert.ToDateTime(time).ToString("hh:mm tt")</h4>
+        </div>
+        <div class="col-xs-2 invoice-col">
+            <h4><strong>Age:</strong>@Model.Admission.Age Y</h4>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Sex:</strong>@Model.Admission.Sex</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Weight:</strong>@Model.Admission.Weight kg</h4>
+        </div>
+        <div class="col-xs-3">
+            <h4><strong>Blood Group:</strong>@Model.Admission.BloodGroup</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Bed No:</strong>@Model.Admission.BedNumber</h4>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <h4><strong>PIN:</strong>@Model.Admission.PinNumber</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Unit Noumber:</strong>@Model.Admission.UnitNumber</h4>
+        </div>
+       
+        <div class="col-xs-3">
+            <h4><strong>Unit Reg No.:</strong>@Model.Admission.UnitRegNumber</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4><strong>Hospital Reg No.:</strong>@Model.Admission.HospitalRegNumber</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3><strong>Hematology </strong></h3>
+            <div class="col-xs-12" style="margin-left: 10px;">
+                <div class="col-xs-6">
+                    <h4><strong>CBC: </strong>@Model.Investigation.Cbc</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Creatinine: </strong>@Model.Investigation.Creatinine (mg/dl)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Urea: </strong>@Model.Investigation.Urea (mg/dl)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Sugar: </strong>@Model.Investigation.Sugar (mg/dl)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Albumin: </strong>@Model.Investigation.Albumin (mg/dl)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Calcium: </strong>@Model.Investigation.Calcium (mmol/L)</h4>
+                </div>
+                @*<div class="col-xs-6">
+                        <h4><strong>Electrolytes: </strong>@Model.Investigation.Electrolytes (meq/L)</h4>
+                    </div>*@
+                <div class="col-xs-6">
+                    <h4><strong>Blood Culture: </strong>@Model.Investigation.BloodCulture</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4> <strong>CRP: </strong>@Model.Investigation.Crp (mg/dl)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>BT: </strong>@Model.Investigation.Bt (min)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>CT: </strong>@Model.Investigation.Ct (min)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4> <strong>Prothrombin Time: </strong>@Model.Investigation.ProthrombinTime (min)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>APTT: </strong>@Model.Investigation.Aptt (min)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Option To Add: </strong>@Model.Investigation.OptionToAddHematology</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3><strong>Hematology </strong></h3>
+            <div class="col-xs-12" style="margin-left: 10px;">
+                <div class="col-xs-6">
+                    <h4><strong>CBC: </strong>@Model.Investigation.Na (mmol/L)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Creatinine: </strong>@Model.Investigation.K (mmol/L)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Urea: </strong>@Model.Investigation.Cl (mmol/L)</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Sugar: </strong>@Model.Investigation.HCO3 (mmol/L)</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.OtherLab.Count>0)
+    {
+        <div class="row">
+            <div class="col-xs-12">
+                <h3><strong>Other Lab </strong></h3>
+                <div class="col-xs-12" style="margin-left: 10px;">
+                    @{
+                        int counter = 0;
+                    }
+                    @foreach (var d in Model.OtherLab)
+                    {
+                        counter++;
+                        <h4 style="margin-left: 30px; min-height: 40px">@Model.GetSerial.Number(counter). @d.OtherLabName</h4>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3><strong>Imaging </strong></h3>
+            <div class="col-xs-12" style="margin-left: 10px;">
+                <div class="col-xs-6">
+                    <h4><strong>CXR: </strong>@Model.Investigation.Cxr</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>AXR: </strong>@Model.Investigation.Axr</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Xray Kub: </strong>@Model.Investigation.XrayKub</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>USG: </strong>@Model.Investigation.Usg</h4>
+                </div>
+
+                <div class="col-xs-6">
+                    <h4><strong>Ba Enema: </strong>@Model.Investigation.BaEnema</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Ba Meal Follow Through: </strong>@Model.Investigation.BaMealFollowThrough</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>MCU: </strong>@Model.Investigation.Mcu</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>RGU: </strong>@Model.Investigation.Rgu</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4> <strong>IVU: </strong>@Model.Investigation.Ivu</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>CT Scan: </strong>@Model.Investigation.CtScan</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>MRI: </strong>@Model.Investigation.Mri</h4>
+                </div>
+                <div class="col-xs-6">
+                    <h4><strong>Option To Add: </strong>@Model.Investigation.OptionToAddImaging</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3><strong>Pathology </strong></h3>
+            <div class="col-xs-12" style="margin-left: 10px;">
+                @{
+                    int i = 0;
+                }
+                @foreach (var d in Model.Patheloy)
+                {
+                    i++;
+                    <h4 style="margin-left: 30px; min-height: 40px">@Model.GetSerial.Number(i). @d.PathologyName @d.Value</h4>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <small class="pull-right">Date: @Convert.ToDateTime(DateTime.Now).ToString("dd/MM/yyyy")</small>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,102 @@
+﻿@model CMCPS.Default.Complication.ComplicationReportData
+
+@if ((bool?)ViewData["Printing"] == true)
+{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+@section Head
+{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+}
+<section class="invoice">
+
+    <div class="row">
+
+        <div class="col-xs-12">
+
+            <h3 style="text-align: center; text-decoration: underline">PATIENT COMPLICATION RECORD</h3>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Name:</strong>@Model.Admission.Name</h4>
+        </div>
+        <div class="col-xs-6 invoice-col">
+            @{
+                string time = Model.Admission.Time.ToString();
+            }
+            <h4><strong>Date & Time of Admission:</strong> @Convert.ToDateTime(Model.Admission.Date).ToString("dd/MM/yyyy") & @Convert.ToDateTime(time).ToString("hh:mm tt")</h4>
+        </div>
+        <div class="col-xs-2 invoice-col">
+            <h4><strong>Age:</strong>@Model.Admission.Age Y</h4>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Sex:</strong>@Model.Admission.Sex</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Weight:</strong>@Model.Admission.Weight kg</h4>
+        </div>
+        <div class="col-xs-3">
+            <h4><strong>Blood Group:</strong>@Model.Admission.BloodGroup</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Bed No:</strong>@Model.Admission.BedNumber</h4>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <h4><strong>PIN:</strong>@Model.Admission.PinNumber</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Unit Noumber:</strong>@Model.Admission.UnitNumber</h4>
+        </div>
+
+        <div class="col-xs-3">
+            <h4><strong>Unit Reg No.:</strong>@Model.Admission.UnitRegNumber</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4><strong>Hospital Reg No.:</strong>@Model.Admission.HospitalRegNumber</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4><strong>Final Diagnosis:</strong>@Model.Complication.FinalDiagnosis</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4><strong>Complication:</strong>@Model.Complication.ComplicationName</h4>
+        </div>
+    </div>
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+
+        <div class="col-xs-12 ">
+            <span class="pull-right">
+                @Model.Complication.Doctor<br />
+                ........................................
+                <h4><strong>Doctor Name</strong></h4>
+            </span>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <small class="pull-right">Date: @Convert.ToDateTime(DateTime.Now).ToString("dd/MM/yyyy")</small>
+        </div>
+    </div>
+</section>

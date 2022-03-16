@@ -1,0 +1,397 @@
+﻿@model CMCPS.Default.AdmissionDetailReportData
+
+@if ((bool?)ViewData["Printing"] == true)
+{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+@section Head
+{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />   
+}
+<section class="invoice">
+
+    <div class="row">
+        <div class="col-xs-2" style="margin-top: 25px">
+            <img width="80px" src="~/Content/images/logoleft.png" />
+        </div>
+        <div class="col-xs-8">
+            <h2 style="text-align: center">@Model.ReportHeadings.CompanyName</h2>
+            <h2 style="text-align: center">@Model.ReportHeadings.Department</h2>
+            <h3 style="text-align: center; text-decoration: underline">PATIENT’S MEDICAL RECORD</h3>
+        </div>
+        <div class="col-xs-2" style="margin-top: 25px">
+            <img width="80px" src="~/Content/images/logoRight.jpg" />
+        </div>
+    </div>
+    <!-- info row -->
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Name:</strong>@Model.Admission.Name</h4>
+        </div>
+        <div class="col-xs-2 invoice-col">
+            <h4><strong>Age:</strong>@Model.Admission.Age Y</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Sex:</strong>@Model.Admission.Sex</h4>
+        </div>
+        <div class="col-xs-3 invoice-col">
+            <h4><strong>Weight:</strong>@Model.Admission.Weight kg</h4>
+        </div>
+
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-xs-4">
+            <h4><strong>Date of Birth:</strong>@Convert.ToDateTime(Model.Admission.DateOfBirth).ToString("dd/MM/yyyy")</h4>
+        </div>
+        <div class="col-xs-3">
+            <h4><strong>Religion:</strong>@Model.Admission.Religion</h4>
+        </div>
+
+        <div class="col-xs-3">
+            <h4><strong>Ward No:</strong>@Model.Admission.Ward</h4>
+        </div>
+        <div class="col-xs-2 invoice-col">
+            <h4><strong>Bed No:</strong>@Model.Admission.BedNumber</h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-xs-4">
+            <h4><strong>Blood Group:</strong>@Model.Admission.BloodGroup</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4><strong>PIN Number:</strong>@Model.Admission.PinNumber</h4>
+        </div>
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Unit Noumber:</strong>@Model.Admission.UnitNumber</h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-3">
+            <h4><strong>Unit Reg No.:</strong>@Model.Admission.UnitRegNumber</h4>
+        </div>
+        <div class="col-xs-4">
+            <h4><strong>Hospital Reg No.:</strong>@Model.Admission.HospitalRegNumber</h4>
+        </div>
+        <div class="col-xs-5 invoice-col">
+            <h4><strong>Father's Name:</strong>@Model.Admission.FatherName</h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Father's NID:</strong>@Model.Admission.FatherNID</h4>
+        </div>
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Mother's Name:</strong>@Model.Admission.MotherName</h4>
+        </div>
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Mother's NID:</strong>@Model.Admission.MotherNID</h4>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-xs-8 invoice-col">
+            <h4><strong>Address:</strong>@Model.Admission.House, @Model.Admission.PostOffice, @Model.Admission.UpazilaName, @Model.Admission.DistrictName</h4>
+        </div>
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Mobile:</strong>@Model.Admission.Mobile</h4>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-8 invoice-col">
+            @{
+                string time = Model.Admission.Time.ToString();
+            }
+            <h4><strong>Date & Time of Admission:</strong> @Convert.ToDateTime(Model.Admission.Date).ToString("dd/MM/yyyy") & @Convert.ToDateTime(time).ToString("hh:mm tt")</h4>
+        </div>
+        <div class="col-xs-4 invoice-col">
+            <h4><strong>Date of Discharge:</strong>@Convert.ToDateTime(Model.Admission.Date).ToString("dd/MM/yyyy")</h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 invoice-col">
+            <h4><strong>Result:</strong> @Model.Admission </h4>
+        </div>
+    </div>
+    <!-- /.row -->
+    <br />
+    <div class="row">
+        @{
+            int counter = 0;
+        }
+        <div class="col-xs-12" style="min-height: 210px">
+            <h4><strong>1. Presenting Complaints</strong></h4>
+            @foreach (var d in Model.PrComplaintsDetails)
+            {
+                counter++;
+                <h4 style="margin-left: 30px; min-height: 40px">@Model.GetSerial.Number(counter). @d.PComplaints</h4>
+            }
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 150px">
+            <h4><strong>2. History of Present illness: </strong><span style="line-height: 20px">@Model.Admission.HistoryOfPresentIllness</span></h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            <h4><strong>3. Past Medical History: </strong></h4>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>a. Antenatal history: </strong>@Model.AnteNatals.Antenatal_Name</h4>
+
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>b. Natal history: </strong> @Model.Natals.NatalName</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>c. Post Natal history: </strong> @Model.PostNatals.PostNatalName</h4>
+            </div>
+            <br />
+
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>d. Milestone of Development: </strong> @Model.Admission.Milestone</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>e. Past illness e relevant management: </strong> @Model.Admission.HoPastIllness</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>f. Immunization history: </strong> @Model.Admission.Immunization</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>g. Feeding history: </strong> @Model.Admission.Feedinghistory</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>h. Travel history: </strong> @Model.Admission.Travelhistory</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>i. Family history: </strong> @Model.Admission.FamilyHistory</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>j. Consanguinity: </strong> @Model.Admission.Consanguinity</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>k. Drug history: </strong> @Model.Admission.DrugHistory</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 50px">
+                <h4><strong>l. Social & personal history: </strong> @Model.Admission.SocialPersonalHistory</h4>
+            </div>
+            <br />
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            <h4><strong>4. Physical Examination: </strong></h4>
+            <div class="col-xs-12" style="margin-left: 10px;">
+                <h4><strong>A. General Examination: </strong></h4>
+                <div class="col-xs-4">
+                    <h4><strong>Weight: </strong>@Model.Admission.Weight kg</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Temperature: </strong>@Model.Admission.Temperature °F</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Pulse: </strong>@Model.Admission.Pulse /min</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Blood Pressure: </strong>@Model.Admission.BP mmHg</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Resp rate: </strong>@Model.Admission.RespRate /min</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Anaemia: </strong>@Model.Admission.Anaemia</h4>
+                </div>
+
+                <div class="col-xs-4">
+                    <h4><strong>Jaundice: </strong>@Model.Admission.Jaundice</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Dehydration: </strong>@Model.Admission.Dehydration</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Edema: </strong>@Model.Admission.Oedema</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Appearance:</strong>@Model.Admission.Appearance</h4>
+                </div>
+                @{
+                    string cyanosis = "";
+                    if (Model.Admission.Cyanosis == true)
+                    {
+                        cyanosis = "Yes";
+                    }
+                    else
+                    {
+                        cyanosis = "No";
+                    }
+                }
+                <div class="col-xs-4">
+                    <h4><strong>Cyanosis:</strong>@cyanosis</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Body Build:</strong>@Model.Admission.BodyBuild</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Height:</strong>@Model.Admission.Height (Inch)</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Co-Operation:</strong>@Model.Admission.CoOperation</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Head Circumference (cm):</strong>@Model.Admission.Circumference</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Decubitus:</strong>@Model.Admission.Decubitus</h4>
+                </div>
+                <div class="col-xs-8">
+                    <h4><strong>Sign of meningeal irritation:</strong>@Model.Admission.SignMeningeal</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Nutrition:</strong>@Model.Admission.Nutrition</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Lymph node:</strong>@Model.Admission.LymphNode</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4><strong>Site:</strong>@Model.Admission.Site</h4>
+                </div>
+                <div class="col-xs-12">
+                    <h4><strong>Other:</strong>@Model.Admission.GEOther</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4><strong>B. Local Examination: (@Model.Admission.ExaminationRegion): </strong></h4>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 120px">
+                <h4><strong>a. Inspection: </strong>@Model.Admission.Inspection</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 120px">
+                <h4><strong>a. Palpation: </strong>@Model.Admission.Palpation</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 120px">
+                <h4><strong>c. Percussion: </strong>@Model.Admission.Percussion</h4>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 150px">
+                <h4><strong>d. Auscultation: </strong>@Model.Admission.Auscultation</h4>
+            </div>
+            <br />
+            <h4><strong>C. Systemic Examination:</strong></h4>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 140px">
+                <h4><strong>a. Alimentary System:</strong>@Model.Admission.Alimentary</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 140px">
+                <h4><strong>b. Respiratory System: </strong>@Model.Admission.Respiratory</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 140px">
+                <h4><strong>c. Cardiovascular System: </strong>@Model.Admission.Cardiovascular</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 140px">
+                <h4><strong>d. Genitourinary System: </strong>@Model.Admission.Genitourinary</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 140px">
+                <h4><strong>e. Locomotor System: </strong>@Model.Admission.Locomotor</h4>
+            </div>
+            <div class="col-xs-12" style="margin-left: 10px; min-height: 140px">
+                <h4><strong>f. Haemopoetic System: </strong>@Model.Admission.Haemopoetic</h4>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 200px">
+            <h4><strong>5. Salient Feature: </strong>@Model.Admission.SalientFeatures</h4>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 150px">
+            <h4><strong>6. Provisional Diagnosis: </strong>@Model.Admission.ProvisionalDiagnosis</h4>
+        </div>
+    </div>
+    <div class="row">
+        @{
+            int i = 0;
+        }
+        <div class="col-xs-12" style="min-height: 180px">
+            <h4><strong>7. Differential diagnosis</strong></h4>
+            @foreach (var d in Model.DaignosisDetails)
+            {
+                i++;
+                <h4 style="margin-left: 30px; min-height: 40px">@Model.GetSerial.Number(i). @d.Diagnosis</h4>
+            }
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 380px">
+            <h4><strong>8. Investigations:</strong>@Model.Admission.Investigations</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 140px">
+            <h4><strong>9. Final  Diagnosis:</strong>@Model.Admission.FinalDiagnosis</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 140px">
+            <h4><strong>10. Plan on discharge:</strong>@Model.Admission.Plandischarge</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="min-height: 140px">
+            <h4><strong>10. Summary:</strong>@Model.Admission.Summary</h4>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-6 pull-left">
+            ............................
+            <h4><strong>Supervisor</strong></h4>
+        </div>
+        <div class="col-xs-6 ">
+            <span class="pull-right">
+                @Model.Admission.Doctor<br />
+                ............................................
+                <h4><strong>Receiving doctor name</strong></h4>
+            </span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            <small class="pull-right">Date: @Convert.ToDateTime(DateTime.Now).ToString("dd/MM/yyyy")</small>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,198 @@
+﻿.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.pnlPopUp{
+    width: 300px;
+    background-color: #edf7ff;
+    border-width: 1px;
+    border-color: #337ab7;
+    border-style: solid;
+    padding: 20px;
+    position: fixed;
+    z-index: 10003;
+    left: 511.5px;
+     top: 250px !important; 
+}
+.s-DataGrid {
+    padding: 10px;
+    border-radius: 3px;
+    background: #fff;
+    border-top: 3px solid #3c8dbc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    overflow:hidden
+}
+.grid-title, .panel-titlebar {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 6px 0;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e7e7e7;
+    color: #0090d9;
+}
+.modal-content{
+    margin-top:220px !important
+}
+.modal-footer{
+    border-top:none;
+}
+.opnew{
+    cursor:pointer;
+   
+}
+    .opnew:hover {
+        text-decoration: none;
+    }
+    /*div#exampleModalCenter {
+    margin-top: 232px;
+    
+}*/
+    .mt-5 {
+        margin-top: 5px;
+    }
+.category-title {
+    margin-top: 0px;
+    margin: 12px 10px 8px 0px;
+    border-bottom: 1px solid #7380C4;
+}
+    .category-title span {
+        color: #d99000;
+        font-size: 13px;
+        font-weight: 600;
+    }
+.s-Toolbar {
+    border-style: none;
+    min-height: 40px;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+}
+.tool-button {
+    color: #000;
+    float: left;
+    display: block;
+    cursor: pointer;
+    border: 1px solid #aaa;
+    margin-right: 3px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    background: linear-gradient(#ffffff 0px, #eeeeee 100%) repeat-x #f7f7f7;
+}
+    .tool-button .button-outer {
+        float: left;
+        padding: 0px 3px;
+        border-left: 1px solid #fff;
+        border-top: 1px solid #fff;
+        border-right: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        border-radius: 3px;
+    }
+.save-and-close-button span.button-inner {
+    /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFW…Rz+k154Q7Kjby/ZM7ldxqiw4f6YkOFVpDHDe1fU98r/gowAMaC+CTtivcaAAAAAElFTkSuQmCC);*/
+}
+
+
+
+
+
+/* Error Messages */
+.xerp_info, .xerp_success, .xerp_warning, .xerp_warn, .xerp_error, .xerp_stop {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 10px 10px 10px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    -moz-border-radius: .5em;
+    -webkit-border-radius: .5em;
+    border-radius: .5em;
+    display: block;
+}
+
+.xerp_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('./img/info.png');
+}
+
+.xerp_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image: url('./img/success.png');
+}
+
+.xerp_warning, .xerp_warn {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('./img/warning.png');
+}
+
+.xerp_error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('./img/error.png');
+}
+
+.xerp_stop {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('./img/stop.png');
+}
+/* End Error Messages */
+
+.select2-container .select2-selection--single {
+    height: 34px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 32px;
+}
+
+/*gridview*/
+.table table  tbody  tr  td a ,
+.table table  tbody  tr  td  span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.table table > tbody > tr > td > span {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.table table > tbody > tr > td:first-child > a,
+.table table > tbody > tr > td:first-child > span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.table table > tbody > tr > td:last-child > a,
+.table table > tbody > tr > td:last-child > span {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.table table > tbody > tr > td > a:hover,
+.table   table > tbody > tr > td > span:hover,
+.table table > tbody > tr > td > a:focus,
+.table table > tbody > tr > td > span:focus {
+    z-index: 2;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+/*end gridview */
